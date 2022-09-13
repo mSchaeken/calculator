@@ -6,7 +6,7 @@ body {
     align-items: center;
     justify-content: space-evenly;
     font-family: 'Noto Sans';
-    background-color: #3A6289;
+    background-color: #d2d4e1;
 }
 
 button {
@@ -14,6 +14,14 @@ button {
     min-height: 32px;
     width: 25%;
     height: auto;
+    border-style: groove;
+    background-color: #ededed;
+}
+
+input {
+    text-align: right;
+    padding-right: 16px;
+    border-style: groove;
 }
 
 .middle {
@@ -33,11 +41,14 @@ button {
     max-width: 400px;
     gap: 16px;
     margin: 16px;
+    text-align: center;
 }
 
 .calculator {
     display: flex;
     flex-direction: column;
+    border-style: ridge;
+    border-color: #1a1a1a;
 }
 
 .calculator > div {
