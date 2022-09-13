@@ -20,8 +20,8 @@ body {
 }
 
 button {
-    min-width: 64px;
-    min-height: 32px;
+    min-width: 80px;
+    min-height: 50px;
     width: 25%;
     height: auto;
     border-style: groove;
@@ -41,10 +41,6 @@ input {
 }
 
 .column-1 {
-    min-width: 400px;
-    max-width: 600px;
-    min-height: 500px;
-    max-height: 700px;
     gap: 16px;
     margin: 16px
 }
@@ -64,10 +60,8 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 400px;
-    max-width: 600px;
-    min-height: 500px;
-    max-height: 700px;
+    max-width: 400px;
+    max-height: 600px;
     border-style: ridge;
     border-color: #1a1a1a;
 }
@@ -81,6 +75,7 @@ input {
     justify-content: center;
     align-items: center;
     background-color: #3366cc;
+    height: 128px;
 }
 
 .row {
@@ -102,17 +97,29 @@ input {
 
 #number-display {
     display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
+    align-items: stretch;
+    flex-direction: column;
+    height: 100px;
     width: 80%;
-    height: 32px;
-    padding: 8px;
     margin-left: 16px;
     margin-right: 16px;
     background-color: #ededed;
     border-style: ridge;
     border-width: 2px;
     border-color: #666666;
+}
+
+#current-number {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 8px;
+}
+
+#previous-number {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: smaller;
+    padding-right: 8px;
 }
 
 #backspace {

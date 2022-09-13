@@ -1,12 +1,12 @@
 /* DATA AND QUERYSELECTORS */
 
-const display = document.querySelector('#number-display');
+let displayMain = document.querySelector('#current-number');
+let displayHeader = document.querySelector('#previous-number');
 
 let firstOperand = undefined;
 let secondOperand = undefined;
 let operator = undefined;
 let result = undefined;
-let clearDisplay = false;
 
 let history = [];
 
@@ -14,21 +14,28 @@ let history = [];
 
 function operate() {
 
-    //Set first operand value if it hasn´t been set before
-    if (firstOperand === undefined) {
-        firstOperand = parseFloat(display.textContent);
+    //Prevent function from doing anything if the first chosen operator is '='
+    if (this.id === 'evaluate' && operator === undefined) {
+        return;
+    }
+
+    else if (firstOperand === undefined) {
         operator = this.id;
-        display.textContent += ` ${this.textContent} `;
+        operatorText = this.textContent
+        firstOperand = parseFloat(displayMain.textContent);
+        displayHeader.textContent += `${displayMain.textContent} ${operatorText} `;
+        displayMain.textContent = '';
     }
 
     else {
-        secondOperand = parseFloat(display.textContent);
+        secondOperand = parseFloat(displayMain.textContent);
         
         switch (operator) {
             case 'add':
-                display.textContent = ` ${this.textContent}`
                 processResults(add());
         };
+
+        operator = this.id;
     };
  };
 
@@ -50,24 +57,24 @@ function divide(a = firstOperand, b = secondOperand) {
 };
 
 function processResults(calculationResult) {
-    display.textContent = `${calculationResult}`;
+    displayHeader.textContent = `${firstOperand} ${operatorText} ${secondOperand} `;
+    displayMain.textContent = `${calculationResult}`;
                 firstOperand = calculationResult;
                 secondOperand = undefined;
-                operator = undefined;
-                clearDisplay = true;
 }
 
 function clearNumber() {
 
-    //Clear either entire display or last entry based on ID of button
+    //Clear either entire displayMain or last entry based on ID of button
     switch (this.id) {
         case 'backspace':
-            display.textContent = display.textContent.slice(0, -1);
+            displayMain.textContent = displayMain.textContent.slice(0, -1);
             operator = undefined;
             break;
 
         case 'all-clear':
-            display.textContent = display.textContent.slice(-1, 0);
+            displayMain.textContent = displayMain.textContent.slice(-1, 0);
+            displayHeader.textContent = displayHeader.textContent.slice(-1, 0);
             firstOperand = undefined;
             secondOperand = undefined;
             operator = undefined;
@@ -77,13 +84,13 @@ function clearNumber() {
 
 function enterNumber () {
 
-    //Conditional to prevent adding multiple dots in display and clear display
-    if (display.textContent.includes('.') && this.textContent === '.') {
+    //Prevent adding multiple dots in display
+    if (displayMain.textContent.includes('.') && this.textContent === '.') {
         return;
     }
 
     else {
-        display.textContent += this.textContent;
+        displayMain.textContent += this.textContent;
     };
 };
 
