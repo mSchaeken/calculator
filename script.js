@@ -37,7 +37,14 @@ function clearNumber () {
 
 function enterNumber () {
     const display = document.querySelector('#number-display');
+
+    //Conditional to prevent adding multiple dots in display
+    if (display.textContent.includes('.') && this.textContent === '.') {
+        return;
+    }
+    else {
     display.textContent += this.textContent;
+    };
 };
 
 
