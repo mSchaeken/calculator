@@ -21,11 +21,20 @@ function divide() {
 };
 
 function clearNumber () {
+    const display = document.querySelector('#number-display');
+    switch (this.id) {
+        case 'backspace':
+            display.textContent = display.textContent.slice(0, -1);
+            break;
+        case 'all-clear':
+            display.textContent = display.textContent.slice(-1, 0);
+    };
 
 };
 
 function enterNumber () {
-
+    const display = document.querySelector('#number-display');
+    display.textContent += this.textContent;
 };
 
 

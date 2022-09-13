@@ -1,5 +1,15 @@
 /* STYLE */
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+  }
+
 body {
     display: flex;
     flex-direction: column;
@@ -21,6 +31,7 @@ button {
 input {
     text-align: right;
     padding-right: 16px;
+    margin-bottom: 2px;
     border-style: groove;
 }
 
@@ -71,6 +82,14 @@ input {
 #number-display {
     width: 100%;
     height: 32px;
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
+    background-color: #ededed;
+    border-style: ridge;
+    border-width: 2px;
+    text-align: right;
 }
 
 #backspace {
