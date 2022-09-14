@@ -3,49 +3,42 @@
 let displayMain = document.querySelector('#current-number');
 let displayHeader = document.querySelector('#previous-number');
 
+//Store of operands and operators for calculations
 let firstOperand = undefined;
 let secondOperand = undefined;
 let operator = undefined;
 let result = undefined;
+
+//Boolean to toggle whether or not a followup calculation is expected
+let followUp = false;
 
 let history = [];
 
 /* FUNCTIONS */
 
 function operate() {
+    operator = this.id;
+    operatorText = this.textContent;
 
-    //Prevent function from doing anything if the first chosen operator is '='
-    if (this.id === 'evaluate' && operator === undefined || this.id === 'evaluate' && operator === 'evaluate') {
-        return;
+    if (operator === 'evaluate' && secondOperand === undefined) {
+        return
     }
 
     else if (firstOperand === undefined) {
-        operator = this.id;
-        operatorText = this.textContent
         firstOperand = parseFloat(displayMain.textContent);
         displayHeader.textContent += `${displayMain.textContent} ${operatorText} `;
         displayMain.textContent = '';
     }
 
-    else if (operator === 'evaluate' && this.id !== 'evaluate') {
-        operator = this.id;
-        operatorText = this.textContent
-        displayHeader.textContent = `${displayMain.textContent} ${operatorText} `;
-        displayMain.textContent = '';
+    else if (operator !== 'evaluate') {
+        followUp = true;
+        evaluate();
     }
 
     else {
-        secondOperand = parseFloat(displayMain.textContent);
-        displayHeader.textContent = result; 
-        
-        switch (operator) {
-            case 'add':
-                processResults(add());
-        };
-
-        operator = this.id;
+        evaluate();
     };
- };
+};
 
 
 function add(a = firstOperand, b = secondOperand) {
@@ -54,27 +47,98 @@ function add(a = firstOperand, b = secondOperand) {
 };
 
 function subtract(a = firstOperand, b = secondOperand) {
-    return a - b;
+    result = a - b;
+    return result
 };
 
 function multiply(a = firstOperand, b = secondOperand) {
-    return a * b;
+    result = a * b;
+    return result;
 };
 
 function divide(a = firstOperand, b = secondOperand) {
-    return a / b;
+    if (secondOperand === 0) {
+        clearAll()
+        displayHeader.textContent = 'ERROR__1337: what is the meaning of life?'
+        displayMain.textContent = '42'
+    }
+    
+    else {
+        result = a / b;
+        return a / b;
+    };
 };
 
-function processResults(calculationResult) {
-    displayHeader.textContent = `${firstOperand} ${operatorText} ${secondOperand} `;
-    displayMain.textContent = `${calculationResult}`;
-                firstOperand = calculationResult;
-                secondOperand = undefined;
+function evaluate() {
+    secondOperand = parseFloat(displayMain.textContent);
+
+    switch (operator) {
+        case 'add':
+            add();
+            updateDisplay();
+            break;
+            
+        case 'subtract':
+            subtract()
+            updateDisplay();
+            break;
+            
+        case 'multiply':
+            multiply()
+            updateDisplay();
+            break;
+            
+        case 'divide':
+            divide()
+            updateDisplay();
+            break;
+        };
+
+    firstOperand = result;
+    secondOperand = parseFloat(displayHeader.textContent);
+};
+
+function updateDisplay() {
+    if (followUp === true) {
+        displayHeader.textContent = `${result} ${operatorText}`;
+        displayMain.textContent = '';
+        followUp = false;
+    }
+
+    else {
+        displayHeader.textContent = `${firstOperand} ${operatorText} ${secondOperand}`;
+        displayMain.textContent = `${result}`;
+        firstOperand = undefined;
+        operator = 'evaluate';
+    }
 }
+
+function enterNumber () {
+
+    //Prevent adding multiple dots in display
+    if (displayMain.textContent.includes('.') && this.textContent === '.') {
+        return;
+    }
+
+
+    else if (operator === 'evaluate') {
+        clearAll();
+        displayMain.textContent = this.textContent;
+
+    }
+
+    else if (followUp === true ) {
+        displayMain.textContent = '';
+        displayMain.textContent += this.textContent;
+    }
+
+    else {
+        displayMain.textContent += this.textContent;
+    };
+};
 
 function backspace() {
     displayMain.textContent = displayMain.textContent.slice(0, -1);
-    operator = undefined;
 }
 
 function clearAll() {
@@ -84,35 +148,8 @@ function clearAll() {
     secondOperand = undefined;
     result = undefined;
     operator = undefined;
+    followUp = false;
 };
-
-function enterNumber () {
-
-    //Prevent adding multiple dots in display
-    if (displayMain.textContent.includes('.') && this.textContent === '.') {
-        return;
-    }
-
-    // //Clear main and header when calculation has ended
-    // else if (operator === 'evaluate') {
-    //     displayHeader.textContent = '';
-    //     displayMain.textContent = this.textContent;
-    //     firstOperand = undefined;
-    //     operator = undefined;
-    // }
-
-    else if (operator === 'evaluate') {
-        clearAll();
-        displayMain.textContent = this.textContent;
-    }
-
-
-
-    else {
-        displayMain.textContent += this.textContent;
-    };
-};
-
 
 function addListeners() {
     const buttons = document.querySelectorAll('button');
@@ -132,6 +169,9 @@ function addListeners() {
                 break;
             case 'backspace':
                 button.addEventListener('click', backspace)
+                break;
+            case 'evaluate':
+                button.addEventListener('click', evaluate)
         };
     });
 };
