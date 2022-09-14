@@ -17,7 +17,6 @@ let history = [];
 /* FUNCTIONS */
 
 function operate() {
-    operator = this.id;
     operatorText = this.textContent;
 
     if (operator === 'evaluate' && secondOperand === undefined) {
@@ -25,6 +24,7 @@ function operate() {
     }
 
     else if (firstOperand === undefined) {
+        operator = this.id;
         firstOperand = parseFloat(displayMain.textContent);
         displayHeader.textContent += `${displayMain.textContent} ${operatorText} `;
         displayMain.textContent = '';
@@ -33,10 +33,12 @@ function operate() {
     else if (operator !== 'evaluate') {
         followUp = true;
         evaluate();
+        operator = this.id
     }
 
     else {
         evaluate();
+        operator = this.id;
     };
 };
 
