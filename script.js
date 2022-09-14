@@ -15,7 +15,7 @@ let history = [];
 function operate() {
 
     //Prevent function from doing anything if the first chosen operator is '='
-    if (this.id === 'evaluate' && operator === undefined) {
+    if (this.id === 'evaluate' && operator === undefined || this.id === 'evaluate' && operator === 'evaluate') {
         return;
     }
 
@@ -27,8 +27,16 @@ function operate() {
         displayMain.textContent = '';
     }
 
+    else if (operator === 'evaluate' && this.id !== 'evaluate') {
+        operator = this.id;
+        operatorText = this.textContent
+        displayHeader.textContent = `${displayMain.textContent} ${operatorText} `;
+        displayMain.textContent = '';
+    }
+
     else {
         secondOperand = parseFloat(displayMain.textContent);
+        displayHeader.textContent = result; 
         
         switch (operator) {
             case 'add':
@@ -41,7 +49,8 @@ function operate() {
 
 
 function add(a = firstOperand, b = secondOperand) {
-        return a + b;
+        result = a + b;
+        return result;
 };
 
 function subtract(a = firstOperand, b = secondOperand) {
@@ -63,23 +72,18 @@ function processResults(calculationResult) {
                 secondOperand = undefined;
 }
 
-function clearNumber() {
+function backspace() {
+    displayMain.textContent = displayMain.textContent.slice(0, -1);
+    operator = undefined;
+}
 
-    //Clear either entire displayMain or last entry based on ID of button
-    switch (this.id) {
-        case 'backspace':
-            displayMain.textContent = displayMain.textContent.slice(0, -1);
-            operator = undefined;
-            break;
-
-        case 'all-clear':
-            displayMain.textContent = displayMain.textContent.slice(-1, 0);
-            displayHeader.textContent = displayHeader.textContent.slice(-1, 0);
-            firstOperand = undefined;
-            secondOperand = undefined;
-            operator = undefined;
-            break;
-    };
+function clearAll() {
+    displayMain.textContent = displayMain.textContent.slice(-1, 0);
+    displayHeader.textContent = displayHeader.textContent.slice(-1, 0);
+    firstOperand = undefined;
+    secondOperand = undefined;
+    result = undefined;
+    operator = undefined;
 };
 
 function enterNumber () {
@@ -88,6 +92,21 @@ function enterNumber () {
     if (displayMain.textContent.includes('.') && this.textContent === '.') {
         return;
     }
+
+    // //Clear main and header when calculation has ended
+    // else if (operator === 'evaluate') {
+    //     displayHeader.textContent = '';
+    //     displayMain.textContent = this.textContent;
+    //     firstOperand = undefined;
+    //     operator = undefined;
+    // }
+
+    else if (operator === 'evaluate') {
+        clearAll();
+        displayMain.textContent = this.textContent;
+    }
+
+
 
     else {
         displayMain.textContent += this.textContent;
@@ -109,8 +128,10 @@ function addListeners() {
                 button.addEventListener('click', operate);
                 break;
             case 'clear':
-                button.addEventListener('click', clearNumber);
+                button.addEventListener('click', clearAll);
                 break;
+            case 'backspace':
+                button.addEventListener('click', backspace)
         };
     });
 };
