@@ -57,16 +57,8 @@ function multiply(a = firstOperand, b = secondOperand) {
 };
 
 function divide(a = firstOperand, b = secondOperand) {
-    if (secondOperand === 0) {
-        clearAll()
-        displayHeader.textContent = 'ERROR__1337: what is the meaning of life?'
-        displayMain.textContent = '42'
-    }
-    
-    else {
         result = a / b;
         return a / b;
-    };
 };
 
 function evaluate() {
@@ -89,10 +81,19 @@ function evaluate() {
             break;
             
         case 'divide':
+            if (secondOperand === 0) {
+                clearAll()
+                displayHeader.textContent = 'Divided by 0'
+                displayMain.textContent = 'Self-destruct in 10... 9... 8...'
+                operator = 'evaluate'
+            }
+
+            else {
             divide()
             updateDisplay();
             break;
-        };
+            };
+    };
 
     firstOperand = result;
     secondOperand = parseFloat(displayHeader.textContent);
