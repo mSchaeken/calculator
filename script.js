@@ -16,7 +16,7 @@ let history = [];
 
 /* FUNCTIONS */
 
-function operate() {
+function validate() {
     operatorText = this.textContent;
 
     if (operator === 'evaluate' && secondOperand === undefined) {
@@ -32,12 +32,12 @@ function operate() {
 
     else if (operator !== 'evaluate') {
         followUp = true;
-        evaluate();
+        operate();
         operator = this.id
     }
 
     else {
-        evaluate();
+        operate();
         operator = this.id;
     };
 };
@@ -63,7 +63,7 @@ function divide(a = firstOperand, b = secondOperand) {
         return a / b;
 };
 
-function evaluate() {
+function operate() {
     secondOperand = parseFloat(displayMain.textContent);
 
     switch (operator) {
@@ -165,7 +165,7 @@ function addListeners() {
                 button.addEventListener('click', enterNumber);
                 break;
             case 'operator':
-                button.addEventListener('click', operate);
+                button.addEventListener('click', validate);
                 break;
             case 'clear':
                 button.addEventListener('click', clearAll);
@@ -174,7 +174,7 @@ function addListeners() {
                 button.addEventListener('click', backspace)
                 break;
             case 'evaluate':
-                button.addEventListener('click', evaluate)
+                button.addEventListener('click', operate)
         };
     });
 };
