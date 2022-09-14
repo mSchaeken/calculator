@@ -9,6 +9,7 @@ let secondOperand = undefined;
 let operator = undefined;
 let result = undefined;
 
+
 //Boolean to toggle whether or not a followup calculation is expected
 let followUp = false;
 
@@ -123,16 +124,10 @@ function enterNumber () {
         return;
     }
 
-
+    //Clear display if the last chosen operator was evaluate (equals-button)
     else if (operator === 'evaluate') {
         clearAll();
         displayMain.textContent = this.textContent;
-
-    }
-
-    else if (followUp === true ) {
-        displayMain.textContent = '';
-        displayMain.textContent += this.textContent;
     }
 
     else {
@@ -141,12 +136,22 @@ function enterNumber () {
 };
 
 function backspace() {
+    if (operator !== 'evaluate') {
     displayMain.textContent = displayMain.textContent.slice(0, -1);
+    }
+
+    else {
+        clearAll();
+    }
 }
 
 function clearAll() {
     displayMain.textContent = displayMain.textContent.slice(-1, 0);
     displayHeader.textContent = displayHeader.textContent.slice(-1, 0);
+    resetValues();
+};
+
+function resetValues() {
     firstOperand = undefined;
     secondOperand = undefined;
     result = undefined;
