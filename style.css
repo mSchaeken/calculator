@@ -1,15 +1,5 @@
 /* STYLE */
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
-  }
-
 body {
     display: flex;
     flex-direction: column;
@@ -34,6 +24,8 @@ input {
     margin-bottom: 2px;
     border-style: groove;
 }
+
+/* CLASSES */
 
 .middle {
     display: flex;
@@ -84,6 +76,15 @@ input {
     justify-content: center;
 }
 
+.operand {
+    background-color: #ededed;
+}
+
+.operator {
+    background-color: #3366cc;
+    color: #ededed;
+}
+
 .history {
     margin: 8px;
 }
@@ -95,6 +96,33 @@ input {
 .footer {
     padding-top: 32px;
 }
+
+.material-symbols-sharp {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+
+/* IDs */
 
 #number-display {
     display: flex;
@@ -131,3 +159,12 @@ input {
     width: 50%;
 }
 
+#square, #root, #fractal, #percentage, #dot {
+    background-color: #3B919B;
+    color: #ededed;
+}
+
+#evaluate {
+    background-color: #3366cc;
+    color: #ededed;
+}

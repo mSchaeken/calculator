@@ -17,11 +17,31 @@ let history = [];
 
 /* FUNCTIONS */
 
+function add(a = firstOperand, b = secondOperand) {
+    result = a + b;
+};
+
+function subtract(a = firstOperand, b = secondOperand) {
+    result = a - b;
+};
+
+function multiply(a = firstOperand, b = secondOperand) {
+    result = a * b;
+};
+
+function divide(a = firstOperand, b = secondOperand) {
+    result = a / b;
+};
+
+function percentage(a = firstOperand, b = secondOperand) {
+    result = (a / 100) * b
+}
+
 function validate() {
     operatorText = this.textContent;
 
     if (operator === 'evaluate' && secondOperand === undefined) {
-        return
+        return;
     }
 
     else if (firstOperand === undefined) {
@@ -34,34 +54,13 @@ function validate() {
     else if (operator !== 'evaluate') {
         followUp = true;
         operate();
-        operator = this.id
+        operator = this.id;
     }
 
     else {
         operate();
         operator = this.id;
     };
-};
-
-
-function add(a = firstOperand, b = secondOperand) {
-        result = a + b;
-        return result;
-};
-
-function subtract(a = firstOperand, b = secondOperand) {
-    result = a - b;
-    return result
-};
-
-function multiply(a = firstOperand, b = secondOperand) {
-    result = a * b;
-    return result;
-};
-
-function divide(a = firstOperand, b = secondOperand) {
-        result = a / b;
-        return a / b;
 };
 
 function operate() {
@@ -71,18 +70,18 @@ function operate() {
         case 'add':
             add();
             updateDisplay();
-            break;
-            
+            break;      
+
         case 'subtract':
             subtract()
             updateDisplay();
-            break;
-            
+            break;  
+
         case 'multiply':
             multiply()
             updateDisplay();
             break;
-            
+       
         case 'divide':
             if (secondOperand === 0) {
                 clearAll()
@@ -96,6 +95,11 @@ function operate() {
             updateDisplay();
             break;
             };
+
+        case 'percentage':
+            percentage();
+            updateDisplay();
+            break;
     };
 
     firstOperand = result;
@@ -136,6 +140,8 @@ function enterNumber () {
 };
 
 function backspace() {
+
+    //Clear just last entry in display unless calculation was just completed using evaluate
     if (operator !== 'evaluate') {
     displayMain.textContent = displayMain.textContent.slice(0, -1);
     }
@@ -169,6 +175,9 @@ function addListeners() {
             case 'operand':
                 button.addEventListener('click', enterNumber);
                 break;
+            case 'separator':
+                button.addEventListener('click', enterNumber);
+                break;  
             case 'operator':
                 button.addEventListener('click', validate);
                 break;
