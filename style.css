@@ -11,7 +11,7 @@ body {
 
 button {
     min-width: 80px;
-    min-height: 50px;
+    min-height: 70px;
     width: 25%;
     height: auto;
     border-style: groove;
@@ -48,6 +48,14 @@ input {
     background-color: #ededed;
 }
 
+.history-icon-container {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 16px;
+}
+
 .calculator {
     display: flex;
     flex-direction: column;
@@ -68,7 +76,7 @@ input {
     justify-content: center;
     align-items: center;
     background-color: #1a1a1a;
-    height: 128px;
+    height: 150px;
 }
 
 .row {
@@ -79,12 +87,18 @@ input {
 .operand {
     background-color: #ededed;
     font-weight: 700;
+    font-size: medium;
+}
+
+.operand:hover {
+    transition: 0.15s;
+    background-color: #666666;
 }
 
 .operator {
     background-color: #3366cc;
     color: #ededed;
-    font-weight: 900;
+    font-weight: 800;
     font-size: large;
 }
 
@@ -92,10 +106,6 @@ input {
     margin: 8px;
 }
 
-#all-clear {
-    font-weight: 800;
-    font-size: large;
-}
 
 .header {
     padding-bottom: 32px;
@@ -164,6 +174,8 @@ input {
 }
 
 #all-clear {
+    font-weight: 800;
+    font-size: large;
     width: 50%;
 }
 
@@ -172,6 +184,10 @@ input {
     color: #ededed;
     font-weight: 500;
     font-size: large;
+}
+
+#evaluate:hover {
+
 }
 
 #dot {

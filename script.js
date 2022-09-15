@@ -9,9 +9,9 @@ let secondOperand = undefined;
 let operator = undefined;
 let result = undefined;
 
-
 //Boolean to toggle whether or not a followup calculation is expected
 let followUp = false;
+
 
 let history = [];
 
@@ -32,10 +32,6 @@ function multiply(a = firstOperand, b = secondOperand) {
 function divide(a = firstOperand, b = secondOperand) {
     result = a / b;
 };
-
-function percentage(a = firstOperand, b = secondOperand) {
-    result = (a / 100) * b
-}
 
 function validate() {
     operatorText = this.textContent;
