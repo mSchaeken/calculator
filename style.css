@@ -67,7 +67,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #3366cc;
+    background-color: #1a1a1a;
     height: 128px;
 }
 
@@ -78,15 +78,23 @@ input {
 
 .operand {
     background-color: #ededed;
+    font-weight: 700;
 }
 
 .operator {
     background-color: #3366cc;
     color: #ededed;
+    font-weight: 900;
+    font-size: large;
 }
 
 .history {
     margin: 8px;
+}
+
+#all-clear {
+    font-weight: 800;
+    font-size: large;
 }
 
 .header {
@@ -159,12 +167,18 @@ input {
     width: 50%;
 }
 
-#square, #root, #fractal, #percentage, #dot {
-    background-color: #3B919B;
+#evaluate {
+    background-color: #666666;
     color: #ededed;
+    font-weight: 500;
+    font-size: large;
 }
 
-#evaluate {
-    background-color: #3366cc;
-    color: #ededed;
+#dot {
+    background-color: #ededed;
+    color: #1a1a1a;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
