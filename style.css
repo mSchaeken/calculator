@@ -54,6 +54,18 @@ input {
     padding-left: 32px;
     padding-right: 32px;
     padding-top: 16px;
+    margin-bottom: 16px;
+}
+
+.history-log-container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.history-entry {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    font-weight: 450;
 }
 
 .calculator {
@@ -103,6 +115,8 @@ input {
 }
 
 .history {
+    display: flex;
+    flex-direction: column;
     margin: 8px;
 }
 
@@ -159,6 +173,7 @@ input {
 #current-number {
     display: flex;
     flex-direction: row-reverse;
+    font-weight: 600;
     padding-right: 8px;
 }
 
@@ -166,6 +181,7 @@ input {
     display: flex;
     flex-direction: row-reverse;
     font-size: smaller;
+    font-weight: 500;
     padding-right: 8px;
 }
 

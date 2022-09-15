@@ -1,7 +1,8 @@
 /* DATA AND QUERYSELECTORS */
 
-let displayMain = document.querySelector('#current-number');
-let displayHeader = document.querySelector('#previous-number');
+const displayMain = document.querySelector('#current-number');
+const displayHeader = document.querySelector('#previous-number');
+const historyLogContainer = document.querySelector('.history-log-container');
 
 //Store of operands and operators for calculations
 let firstOperand = undefined;
@@ -160,6 +161,20 @@ function resetValues() {
     operator = undefined;
     followUp = false;
 };
+
+function updateHistory() {
+    const historyParagraph = document.createElement('p');
+
+    historyParagraph.className = 'history-entry';
+    historyParagraph.textContent = `${displayHeader.textContent} = ${result}`;
+
+    const entryCount = document.querySelectorAll('.history-entry');
+    if (entryCount.length >= 9) {
+        historyLogContainer.removeChild(historyLogContainer.firstChild);
+    };
+
+    historyLogContainer.appendChild(historyParagraph);
+}
 
 function addListeners() {
     const buttons = document.querySelectorAll('button');
