@@ -43,8 +43,9 @@ h2 {
 }
 
 .column-2 {
-    width: 225px;
-    max-width: 600px;
+    width: 255px;
+    max-width: 300px;
+    max-height: 505px;
     gap: 16px;
     margin: 16px;
     text-align: center;
@@ -73,6 +74,8 @@ h2 {
     font-weight: 450;
     border: dashed;
     border-width: 1px;
+    padding: 2px;
+    margin: 4px;
 }
 
 .calculator {
