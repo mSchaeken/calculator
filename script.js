@@ -149,6 +149,13 @@ function updateHistory() {
     historyLogContainer.appendChild(historyParagraph);
 }
 
+function deleteHistory() {
+    const entryCount = document.querySelectorAll('.history-entry');
+    while (entryCount.length >= 1) {
+        historyLogContainer.removeChild(historyLogContainer.firstChild);
+    };
+}
+
 function addListeners() {
     const buttons = document.querySelectorAll('button');
 
@@ -173,6 +180,9 @@ function addListeners() {
                 break;
             case 'evaluate':
                 button.addEventListener('click', operate);
+                break;
+            case 'delete-history':
+                button.addEventListener('click', deleteHistory);
                 break;
         };
     });
