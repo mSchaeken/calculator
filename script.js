@@ -13,9 +13,6 @@ let result = undefined;
 //Boolean to toggle whether or not a followup calculation is expected
 let followUp = false;
 
-
-let history = [];
-
 /* FUNCTIONS */
 
 function add(a = firstOperand, b = secondOperand) {
@@ -105,12 +102,14 @@ function operate() {
 
 function updateDisplay() {
     if (followUp === true) {
+        updateHistory();
         displayHeader.textContent = `${result} ${operatorText}`;
         displayMain.textContent = '';
         followUp = false;
     }
 
     else {
+        updateHistory();
         displayHeader.textContent = `${firstOperand} ${operatorText} ${secondOperand}`;
         displayMain.textContent = `${result}`;
         firstOperand = undefined;
@@ -166,7 +165,7 @@ function updateHistory() {
     const historyParagraph = document.createElement('p');
 
     historyParagraph.className = 'history-entry';
-    historyParagraph.textContent = `${displayHeader.textContent} = ${result}`;
+    historyParagraph.textContent = `${displayHeader.textContent} ${displayMain.textContent} = ${result}`;
 
     const entryCount = document.querySelectorAll('.history-entry');
     if (entryCount.length >= 9) {

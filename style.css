@@ -25,6 +25,11 @@ input {
     border-style: groove;
 }
 
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: xx-large;
+}
+
 /* CLASSES */
 
 .middle {
@@ -66,6 +71,8 @@ input {
     font-family: 'Courier New', Courier, monospace;
     font-size: small;
     font-weight: 450;
+    border: dashed;
+    border-width: 1px;
 }
 
 .calculator {
