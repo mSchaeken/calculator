@@ -11,7 +11,7 @@ body {
 
 button {
     min-width: 80px;
-    min-height: 50px;
+    min-height: 70px;
     width: 25%;
     height: auto;
     border-style: groove;
@@ -23,6 +23,11 @@ input {
     padding-right: 16px;
     margin-bottom: 2px;
     border-style: groove;
+}
+
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: xx-large;
 }
 
 /* CLASSES */
@@ -38,14 +43,43 @@ input {
 }
 
 .column-2 {
-    width: 225px;
-    max-width: 600px;
+    width: 255px;
+    max-width: 300px;
+    max-height: 505px;
     gap: 16px;
     margin: 16px;
     text-align: center;
     border-style: ridge;
     border-color: #1a1a1a;
     background-color: #ededed;
+}
+
+.history-icon-container {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 16px;
+    margin-bottom: 16px;
+}
+
+.history-log-container {
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+
+.history-entry {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    font-weight: 450;
+    border: dotted;
+    border-width: 2px;
+    border-radius: 6px;
+    padding: 4px;
+    margin: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .calculator {
@@ -68,7 +102,7 @@ input {
     justify-content: center;
     align-items: center;
     background-color: #1a1a1a;
-    height: 128px;
+    height: 150px;
 }
 
 .row {
@@ -79,23 +113,33 @@ input {
 .operand {
     background-color: #ededed;
     font-weight: 700;
+    font-size: medium;
+}
+
+.operand:hover {
+    transition: 0.15s;
+    background-color: #666666;
 }
 
 .operator {
     background-color: #3366cc;
     color: #ededed;
-    font-weight: 900;
-    font-size: large;
-}
-
-.history {
-    margin: 8px;
-}
-
-#all-clear {
     font-weight: 800;
     font-size: large;
 }
+
+.operator:hover {
+    background-color: #ededed;
+    color: #3366cc;
+    transition: 0.15s;
+}
+
+.history {
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+}
+
 
 .header {
     padding-bottom: 32px;
@@ -149,6 +193,7 @@ input {
 #current-number {
     display: flex;
     flex-direction: row-reverse;
+    font-weight: 600;
     padding-right: 8px;
 }
 
@@ -156,6 +201,7 @@ input {
     display: flex;
     flex-direction: row-reverse;
     font-size: smaller;
+    font-weight: 500;
     padding-right: 8px;
 }
 
@@ -164,7 +210,15 @@ input {
 }
 
 #all-clear {
+    font-weight: 800;
+    font-size: large;
     width: 50%;
+}
+
+#all-clear:hover, #backspace:hover {
+    background-color: #3366cc;
+    color: #ededed;
+    transition: 0.15s;
 }
 
 #evaluate {
@@ -174,6 +228,12 @@ input {
     font-size: large;
 }
 
+#evaluate:hover {
+    background-color: #ededed;
+    color: #3366cc;
+    transition: 0.15s;
+}
+
 #dot {
     background-color: #ededed;
     color: #1a1a1a;
@@ -181,4 +241,9 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#dot:hover {
+    transition: 0.15s;
+    background-color: #666666;
 }
