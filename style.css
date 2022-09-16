@@ -81,7 +81,7 @@ h2 {
 .history-entry {
     font-family: 'Courier New', Courier, monospace;
     font-size: small;
-    font-weight: 450;
+    font-weight: 600;
     border: dotted;
     border-width: 2px;
     border-radius: 16px;
@@ -252,7 +252,8 @@ h2 {
     min-width: 40px;
     height: 24px;
     width: 24px;
-    border: none;
+    padding-left: 2px;
+    /* border: none; */
 }
 
 #delete-history:hover {

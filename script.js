@@ -34,17 +34,20 @@ function divide(a = firstOperand, b = secondOperand) {
 function validate() {
     operatorText = this.textContent;
 
-    if (operator === 'evaluate' && secondOperand === undefined) {
-        return;
+    if (operator === 'evaluate' && secondOperand === undefined || operator === 'evaluate' && firstOperand === undefined ) {
+        return;    
+
     } else if (firstOperand === undefined) {
         operator = this.id;
         firstOperand = parseFloat(displayMain.textContent);
         displayHeader.textContent += `${displayMain.textContent} ${operatorText} `;
         displayMain.textContent = '';
+
     } else if (operator !== 'evaluate') {
         followUp = true;
         operate();
         operator = this.id;
+
     } else {
         operate();
         operator = this.id;
@@ -80,16 +83,19 @@ function operate() {
             };
     };
 
-    firstOperand = result;
+    // firstOperand = result;
     secondOperand = parseFloat(displayHeader.textContent);
 };
 
 function updateDisplay() {
     if (followUp === true) {
+        firstOperand = result;
         updateHistory();
         displayHeader.textContent = `${result} ${operatorText}`;
         displayMain.textContent = '';
+        operator = undefined;
         followUp = false;
+
     } else {
         updateHistory();
         displayHeader.textContent = `${firstOperand} ${operatorText} ${secondOperand}`;
@@ -108,6 +114,7 @@ function enterNumber () {
     else if (operator === 'evaluate') {
         clearAll();
         displayMain.textContent = this.textContent;
+
     } else {
         displayMain.textContent += this.textContent;
     };
@@ -189,11 +196,5 @@ function addListeners() {
         };
     });
 };
-
-document.addEventListener('keypress', (event) => {
-    let name = event.key;
-    
-    console.log(typeof name)
-  });
 
 window.onload = addListeners();
