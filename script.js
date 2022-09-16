@@ -16,19 +16,19 @@ let followUp = false;
 /* FUNCTIONS */
 
 function add(a = firstOperand, b = secondOperand) {
-    result = a + b;
+    result = Math.round(((a + b) + Number.EPSILON) * 100000) / 100000;
 };
 
 function subtract(a = firstOperand, b = secondOperand) {
-    result = a - b;
+    result = Math.round(((a - b) + Number.EPSILON) * 100000) / 100000;
 };
 
 function multiply(a = firstOperand, b = secondOperand) {
-    result = a * b;
+    result = Math.round(((a * b) + Number.EPSILON) * 100000) / 100000;
 };
 
 function divide(a = firstOperand, b = secondOperand) {
-    result = a / b;
+    result = Math.round(((a / b) + Number.EPSILON) * 100000) / 100000;
 };
 
 function validate() {
