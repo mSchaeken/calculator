@@ -66,14 +66,16 @@ h2 {
 .history-log-container {
     display: flex;
     flex-direction: column-reverse;
+
 }
 
 .history-entry {
     font-family: 'Courier New', Courier, monospace;
     font-size: small;
     font-weight: 450;
-    border: dashed;
+    border: dotted;
     border-width: 1px;
+    border-radius: 6px;
     padding: 4px;
     margin: 4px;
     margin-top: 4px;
@@ -124,6 +126,12 @@ h2 {
     color: #ededed;
     font-weight: 800;
     font-size: large;
+}
+
+.operator:hover {
+    background-color: #ededed;
+    color: #3366cc;
+    transition: 0.15s;
 }
 
 .history {
@@ -207,6 +215,12 @@ h2 {
     width: 50%;
 }
 
+#all-clear:hover, #backspace:hover {
+    background-color: #3366cc;
+    color: #ededed;
+    transition: 0.15s;
+}
+
 #evaluate {
     background-color: #666666;
     color: #ededed;
@@ -215,7 +229,9 @@ h2 {
 }
 
 #evaluate:hover {
-
+    background-color: #ededed;
+    color: #3366cc;
+    transition: 0.15s;
 }
 
 #dot {
@@ -225,4 +241,9 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#dot:hover {
+    transition: 0.15s;
+    background-color: #666666;
 }

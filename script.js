@@ -36,22 +36,16 @@ function validate() {
 
     if (operator === 'evaluate' && secondOperand === undefined) {
         return;
-    }
-
-    else if (firstOperand === undefined) {
+    } else if (firstOperand === undefined) {
         operator = this.id;
         firstOperand = parseFloat(displayMain.textContent);
         displayHeader.textContent += `${displayMain.textContent} ${operatorText} `;
         displayMain.textContent = '';
-    }
-
-    else if (operator !== 'evaluate') {
+    } else if (operator !== 'evaluate') {
         followUp = true;
         operate();
         operator = this.id;
-    }
-
-    else {
+    } else {
         operate();
         operator = this.id;
     };
@@ -65,35 +59,25 @@ function operate() {
             add();
             updateDisplay();
             break;      
-
         case 'subtract':
             subtract()
             updateDisplay();
             break;  
-
         case 'multiply':
             multiply()
             updateDisplay();
             break;
-       
         case 'divide':
             if (secondOperand === 0) {
                 clearAll()
                 displayHeader.textContent = 'Divided by 0'
                 displayMain.textContent = 'Self-destruct in 10... 9... 8...'
                 operator = 'evaluate'
-            }
-
-            else {
-            divide()
-            updateDisplay();
-            break;
+            } else {
+                divide()
+                updateDisplay();
+                break;
             };
-
-        case 'percentage':
-            percentage();
-            updateDisplay();
-            break;
     };
 
     firstOperand = result;
@@ -106,9 +90,7 @@ function updateDisplay() {
         displayHeader.textContent = `${result} ${operatorText}`;
         displayMain.textContent = '';
         followUp = false;
-    }
-
-    else {
+    } else {
         updateHistory();
         displayHeader.textContent = `${firstOperand} ${operatorText} ${secondOperand}`;
         displayMain.textContent = `${result}`;
@@ -118,31 +100,24 @@ function updateDisplay() {
 }
 
 function enterNumber () {
-
     //Prevent adding multiple dots in display
     if (displayMain.textContent.includes('.') && this.textContent === '.') {
         return;
     }
-
     //Clear display if the last chosen operator was evaluate (equals-button)
     else if (operator === 'evaluate') {
         clearAll();
         displayMain.textContent = this.textContent;
-    }
-
-    else {
+    } else {
         displayMain.textContent += this.textContent;
     };
 };
 
 function backspace() {
-
     //Clear just last entry in display unless calculation was just completed using evaluate
     if (operator !== 'evaluate') {
-    displayMain.textContent = displayMain.textContent.slice(0, -1);
-    }
-
-    else {
+        displayMain.textContent = displayMain.textContent.slice(0, -1);
+    } else {
         clearAll();
     }
 }
@@ -163,7 +138,6 @@ function resetValues() {
 
 function updateHistory() {
     const historyParagraph = document.createElement('p');
-
     historyParagraph.className = 'history-entry';
     historyParagraph.textContent = `${displayHeader.textContent} ${displayMain.textContent} = ${result}`;
 
@@ -195,10 +169,11 @@ function addListeners() {
                 button.addEventListener('click', clearAll);
                 break;
             case 'backspace':
-                button.addEventListener('click', backspace)
+                button.addEventListener('click', backspace);
                 break;
             case 'evaluate':
-                button.addEventListener('click', operate)
+                button.addEventListener('click', operate);
+                break;
         };
     });
 };
