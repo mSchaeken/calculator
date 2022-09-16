@@ -57,6 +57,7 @@ h2 {
 .history-icon-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-left: 32px;
     padding-right: 32px;
     padding-top: 16px;
@@ -246,4 +247,20 @@ h2 {
 #dot:hover {
     transition: 0.15s;
     background-color: #666666;
+}
+
+#delete-history {
+    min-height: 40px;
+    min-width: 40px;
+    height: 24px;
+    width: 24px;
+    border: none;
+}
+
+#delete-history:hover {
+    transition: 0.2s;
+    border: solid;
+    border-width: 2px;
+    border-radius: 24px;
+    border-color: #3366cc;
 }
