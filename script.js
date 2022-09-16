@@ -150,9 +150,11 @@ function updateHistory() {
 }
 
 function deleteHistory() {
-    const entryCount = document.querySelectorAll('.history-entry');
-    while (entryCount.length >= 1) {
+    const entries = document.querySelectorAll('.history-entry');
+    let entryCount = entries.length;
+    while (entryCount >= 1) {
         historyLogContainer.removeChild(historyLogContainer.firstChild);
+        entryCount--;
     };
 }
 
@@ -187,5 +189,11 @@ function addListeners() {
         };
     });
 };
+
+document.addEventListener('keypress', (event) => {
+    let name = event.key;
+    
+    console.log(typeof name)
+  });
 
 window.onload = addListeners();

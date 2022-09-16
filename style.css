@@ -28,6 +28,7 @@ input {
 h2 {
     font-family: 'Courier New', Courier, monospace;
     font-size: xx-large;
+    padding-bottom: 32px;
 }
 
 /* CLASSES */
@@ -54,6 +55,13 @@ h2 {
     background-color: #ededed;
 }
 
+.history {
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+    background-color: #ededed;
+}
+
 .history-icon-container {
     display: flex;
     justify-content: space-between;
@@ -77,6 +85,7 @@ h2 {
     border: dotted;
     border-width: 2px;
     border-radius: 16px;
+    border-color: #3366cc;
     padding: 4px;
     margin: 4px;
     margin-top: 4px;
@@ -133,17 +142,6 @@ h2 {
     background-color: #ededed;
     color: #3366cc;
     transition: 0.15s;
-}
-
-.history {
-    display: flex;
-    flex-direction: column;
-    margin: 8px;
-}
-
-
-.header {
-    padding-bottom: 32px;
 }
 
 .footer {
